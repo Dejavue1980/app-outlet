@@ -42,7 +42,6 @@ function findAllApps() {
             runCommand(`appstreamcli dump ${appSearchResult.Identifier}`),
         ),
         map((appXml) => xml.parse(appXml)),
-        //toArray(),
     );
 }
 

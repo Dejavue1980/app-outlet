@@ -1,5 +1,6 @@
 const { forkJoin, Subject } = require('rxjs');
 
+const appstreamSynchronizer = require('./synchronizer/AppStreamSynchronizer');
 const flathubSynchronizer = require('./synchronizer/FlathubSynchronizer');
 const appImageHubSynchronizer = require('./synchronizer/AppImageHubSynchronizer');
 const settingsService = require('../settings/SettingsService');
@@ -32,8 +33,9 @@ async function startSynchronization() {
 function synchronize() {
     isSynchronizationRunning.next(true);
     forkJoin([
-        flathubSynchronizer.startSynchronization(),
-        appImageHubSynchronizer.startSynchronization(),
+        //flathubSynchronizer.startSynchronization(),
+        //appImageHubSynchronizer.startSynchronization(),
+        appstreamSynchronizer.startSynchronization(),
     ]).subscribe(
         () => {
             console.log('Synchronization succeeded');
